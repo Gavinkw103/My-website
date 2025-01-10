@@ -10,66 +10,70 @@
       margin: 0;
       padding: 0;
     }
+
     header, footer {
       background-color: #333;
       color: white;
       text-align: center;
       padding: 10px 0;
     }
+
     nav {
       display: flex;
       justify-content: space-around;
       background-color: #444;
       padding: 10px;
     }
+
     nav a {
       color: white;
       text-decoration: none;
       padding: 8px 16px;
     }
+
     nav a:hover {
       background-color: #555;
       border-radius: 5px;
     }
+
     .container {
       padding: 20px;
     }
+
     .product {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
     }
+
     .product img {
       width: 200px;
       height: 200px;
       cursor: pointer;
     }
+
     .product-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
+
     .customer-reviews, .contact {
       margin-top: 30px;
     }
+
     .rating {
       display: flex;
       align-items: center;
     }
+
     .rating span {
       margin-left: 5px;
     }
-    .back-button {
+
+    footer {
       margin-top: 20px;
-      text-align: center;
-    }
-    input, button, textarea {
-      margin: 5px 0;
-      padding: 10px;
-      width: 100%;
-      max-width: 400px;
-      box-sizing: border-box;
     }
   </style>
 </head>
@@ -84,75 +88,36 @@
     <a href="#reviews">Customer Reviews</a>
   </nav>
 
-  <div id="main" class="container">
-    <!-- Product List -->
-    <div id="products" class="product-list">
-      <div class="product" onclick="showProduct('Product 1', 'https://via.placeholder.com/300', 'This is an amazing product.')">
+  <div class="container">
+    <section id="products" class="product-list">
+      <div class="product">
         <img src="https://via.placeholder.com/200" alt="Product 1">
-        <h3>Product 1</h3>
+        <p>Product 1</p>
         <p>$0.01</p>
       </div>
-      <div class="product" onclick="showProduct('Product 2', 'https://via.placeholder.com/300', 'This is another amazing product.')">
+      <div class="product">
         <img src="https://via.placeholder.com/200" alt="Product 2">
-        <h3>Product 2</h3>
+        <p>Product 2</p>
         <p>$0.02</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Product Details -->
-    <div id="product-details" style="display: none;">
-      <div>
-        <img id="product-image" style="width: 300px; height: 300px;" />
-      </div>
-      <div>
-        <h3 id="product-name"></h3>
-        <p id="product-description"></p>
-        <div class="rating">
-          <p>⭐⭐⭐⭐⭐</p>
-          <span>(12 five-star ratings)</span>
-        </div>
-        <button onclick="alert('Thank you for rating!')">Rate This Product</button>
-        <div class="back-button">
-          <button onclick="showProducts()">Back to Products</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Contact Us -->
-    <div id="contact" class="contact">
+    <section id="contact" class="contact">
       <h2>Contact Us</h2>
       <p>Phone: 801-427-4985</p>
       <p>Email: contact@mywebsite.com</p>
-    </div>
+    </section>
 
-    <!-- Customer Reviews -->
-    <div id="reviews" class="customer-reviews">
+    <section id="reviews" class="customer-reviews">
       <h2>What Our Customers Say</h2>
-      <div>
-        <p><strong>John D.</strong>: "Great website! Easy to use and great products."</p>
-        <p><strong>Emily R.</strong>: "Fantastic quality and fast shipping."</p>
-        <p><strong>Mike T.</strong>: "Highly recommend this site. Very professional!"</p>
-      </div>
-    </div>
+      <p>John D. - "Great website! Easy to use and great products."</p>
+      <p>Emily R. - "Fantastic quality and fast shipping."</p>
+      <p>Mike T. - "Highly recommend this site. Very professional!"</p>
+    </section>
   </div>
 
   <footer>
-    <p>&copy; 2025 My Website. All rights reserved.</p>
+    <p>© 2025 My Website. All rights reserved.</p>
   </footer>
-
-  <script>
-    function showProduct(name, image, description) {
-      document.getElementById('products').style.display = 'none';
-      document.getElementById('product-details').style.display = 'block';
-      document.getElementById('product-name').textContent = name;
-      document.getElementById('product-image').src = image;
-      document.getElementById('product-description').textContent = description;
-    }
-
-    function showProducts() {
-      document.getElementById('products').style.display = 'block';
-      document.getElementById('product-details').style.display = 'none';
-    }
-  </script>
 </body>
 </html>

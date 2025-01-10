@@ -1,177 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        header a:hover {
-            text-decoration: underline;
-        }
-
-        .hero {
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 50px 20px;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-        }
-
-        .products-container, .checkout-container {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product {
-            margin: 10px auto;
-            padding: 15px;
-            background-color: #4CAF50;
-            color: white;
-            width: 200px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .product:hover {
-            background-color: #45a049;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .testimonial {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .testimonial p {
-            font-size: 1rem;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #444;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+    }
+    nav a:hover {
+      background-color: #555;
+      border-radius: 5px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .product img {
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .customer-reviews, .contact {
+      margin-top: 30px;
+    }
+    .rating {
+      display: flex;
+      align-items: center;
+    }
+    .rating span {
+      margin-left: 5px;
+    }
+    .back-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+    input, button, textarea {
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-        <nav>
-            <a href="#" onclick="showHome()">Home</a>
-            <a href="#" onclick="showProducts()">Products</a>
-            <a href="admin.html">Edit Prices</a>
-        </nav>
-    </header>
+  <header>
+    <h1>Welcome to My Website</h1>
+  </header>
 
-    <div id="home" class="hero">
-        <h1>Welcome to My Website</h1>
-        <p>Your one-stop shop for amazing products</p>
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact Us</a>
+    <a href="#reviews">Customer Reviews</a>
+  </nav>
+
+  <div id="main" class="container">
+    <!-- Product List -->
+    <div id="products" class="product-list">
+      <div class="product" onclick="showProduct('Product 1', 'img1.jpg', 'This is an amazing product.')">
+        <img src="https://via.placeholder.com/200" alt="Product 1">
+        <h3>Product 1</h3>
+        <p>$0.01</p>
+      </div>
+      <!-- Add more products dynamically in the same format -->
+      <div class="product" onclick="showProduct('Product 2', 'img2.jpg', 'This is another amazing product.')">
+        <img src="https://via.placeholder.com/200" alt="Product 2">
+        <h3>Product 2</h3>
+        <p>$0.02</p>
+      </div>
+      <!-- Example of 20 products -->
+      <!-- Repeat the structure above as needed -->
     </div>
 
-    <div id="products" class="products-container" style="display: none;">
-        <h2>Our Products</h2>
-        <button class="product" onclick="selectProduct('Product 1', '0.01')">Product 1 - $0.01</button>
-        <button class="product" onclick="selectProduct('Product 2', '0.02')">Product 2 - $0.02</button>
-        <button class="product" onclick="selectProduct('Product 3', '14.99')">Product 3 - $14.99</button>
+    <!-- Product Details -->
+    <div id="product-details" style="display: none;">
+      <div>
+        <img id="product-image" style="width: 300px; height: 300px;" />
+      </div>
+      <div>
+        <h3 id="product-name"></h3>
+        <p id="product-description"></p>
+        <div class="rating">
+          <p>⭐⭐⭐⭐⭐</p>
+          <span>(12 five-star ratings)</span>
+        </div>
+        <button onclick="alert('Thank you for rating!')">Rate This Product</button>
+        <div class="back-button">
+          <button onclick="showProducts()">Back to Products</button>
+        </div>
+      </div>
     </div>
 
-    <div id="checkout" class="checkout-container" style="display: none;">
-        <h2>Checkout</h2>
-        <form onsubmit="placeOrder(event)">
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" required><br><br>
-            <label for="address">Shipping Address:</label>
-            <input type="text" id="address" required><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" required><br><br>
-            <label for="card">Credit Card Number:</label>
-            <input type="text" id="card" placeholder="1234-5678-1234-5678" pattern="\d{4}-\d{4}-\d{4}-\d{4}" required><br><br>
-            <label for="expiry">Expiry Date (MM/YY):</label>
-            <input type="text" id="expiry" placeholder="MM/YY" pattern="\d{2}/\d{2}" required><br><br>
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" placeholder="123" pattern="\d{3}" required><br><br>
-            <button type="submit">Place Order</button>
-        </form>
+    <!-- Contact Us -->
+    <div id="contact" class="contact">
+      <h2>Contact Us</h2>
+      <p>Phone: 801-427-4985</p>
+      <p>Email: contact@mywebsite.com</p>
     </div>
 
-    <div id="testimonial" class="testimonial">
-        <h2>What Our Customers Say</h2>
-        <p>"This website is amazing! Highly recommend." - Jane Doe</p>
+    <!-- Customer Reviews -->
+    <div id="reviews" class="customer-reviews">
+      <h2>What Our Customers Say</h2>
+      <div>
+        <p><strong>John D.</strong>: "Great website! Easy to use and great products."</p>
+        <p><strong>Emily R.</strong>: "Fantastic quality and fast shipping."</p>
+        <p><strong>Mike T.</strong>: "Highly recommend this site. Very professional!"</p>
+        <!-- Add more reviews -->
+      </div>
     </div>
+  </div>
 
-    <footer>
-        <p>© 2025 My Website. All rights reserved.</p>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Contact Us</a>
-    </footer>
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+  </footer>
 
-    <script>
-        function showHome() {
-            document.getElementById('home').style.display = 'block';
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('checkout').style.display = 'none';
-        }
+  <script>
+    function showProduct(name, image, description) {
+      document.getElementById('products').style.display = 'none';
+      document.getElementById('product-details').style.display = 'block';
+      document.getElementById('product-name').textContent = name;
+      document.getElementById('product-image').src = image;
+      document.getElementById('product-description').textContent = description;
+    }
 
-        function showProducts() {
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('products').style.display = 'block';
-            document.getElementById('checkout').style.display = 'none';
-        }
-
-        function selectProduct(name, price) {
-            alert(`You selected ${name} for $${price}. Proceed to checkout.`);
-            document.getElementById('home').style.display = 'none';
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('checkout').style.display = 'block';
-        }
-
-        function placeOrder(event) {
-            event.preventDefault();
-            alert('Order placed successfully! Thank you for shopping with us.');
-        }
-
-        // Initialize Home Page on Load
-        showHome();
-    </script>
+    function showProducts() {
+      document.getElementById('products').style.display = 'block';
+      document.getElementById('product-details').style.display = 'none';
+    }
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full-Feature E-Commerce Store</title>
+    <title>My Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,193 +17,146 @@
             padding: 1rem;
             text-align: center;
         }
-        nav {
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
             background-color: #444;
-            padding: 0.5rem;
-            text-align: center;
         }
-        nav a {
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
             color: white;
             text-decoration: none;
-            margin: 0 1rem;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 1rem;
-        }
-        .product {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            margin: 1rem 0;
-            background-color: white;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .product img {
-            width: 100%;
-            max-width: 200px;
-            margin-right: 20px;
-        }
-        .product-details {
-            flex: 1;
-        }
-        .wishlist, .back-in-stock {
-            display: inline-block;
-            margin-left: 1rem;
-            cursor: pointer;
-            color: #007bff;
-        }
-        .wishlist:hover, .back-in-stock:hover {
-            text-decoration: underline;
-        }
-        .featured {
-            background-color: #ffe4b2;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-        .blog {
-            margin: 2rem 0;
+        main {
+            padding: 20px;
         }
         footer {
             background-color: #333;
             color: white;
             text-align: center;
             padding: 1rem;
+            margin-top: 20px;
         }
-        .badge {
-            display: inline-block;
-            margin-top: 10px;
+        .product-list, .checkout-form, .faq, .about-section {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .badge img {
-            width: 50px;
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
         }
-        .review {
-            margin-top: 10px;
-            background: #efefef;
-            padding: 10px;
-        }
-        .newsletter, .contact-form {
-            margin: 2rem 0;
-            background: #efefef;
-            padding: 1rem;
-        }
-        .social-icons {
-            margin-top: 1rem;
-        }
-        .social-icons img {
-            width: 30px;
-            margin-right: 10px;
+        button:hover {
+            background-color: darkgreen;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Full-Feature E-Commerce Store</h1>
+        <h1>Welcome to My Website</h1>
     </header>
 
     <nav>
-        <a href="#products">Products</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+        <ul>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#checkout">Checkout</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#about">About Us</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
-        <!-- Featured Products -->
-        <div class="featured">
-            <h2>Featured Product</h2>
-            <p>Exclusive Item - $99.99</p>
-        </div>
-
-        <!-- Product Categories -->
-        <div id="products" class="category">
-            <label for="categories">Filter by Category:</label>
-            <select id="categories">
-                <option value="all">All</option>
-                <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
-                <option value="home">Home Appliances</option>
-            </select>
-        </div>
-
+    <main>
         <!-- Products Section -->
-        <div class="product">
-            <img src="placeholder.png" alt="Product Image">
-            <div class="product-details">
-                <h3>Product Name 1</h3>
-                <p>Price: $19.99</p>
-                <button>Add to Cart</button>
-                <span class="wishlist">Add to Wishlist</span>
-                <span class="back-in-stock">Notify me when back in stock</span>
-                <div class="badge">
-                    <img src="secure-payment.png" alt="Secure Payment">
-                    <p>Safe & Secure Payment</p>
-                </div>
-                <div class="review">
-                    <strong>John Doe:</strong> Great product! Highly recommended.
-                </div>
-            </div>
-        </div>
+        <section id="products" class="product-list">
+            <h2>Our Products</h2>
+            <ul>
+                <li>Product 1 - $19.99</li>
+                <li>Product 2 - $24.99</li>
+                <li>Product 3 - $14.99</li>
+            </ul>
+        </section>
 
-        <!-- Newsletter Signup -->
-        <div class="newsletter">
-            <h2>Subscribe to our Newsletter</h2>
-            <input type="email" placeholder="Your Email">
-            <button>Subscribe</button>
-        </div>
+        <!-- Checkout Section -->
+        <section id="checkout" class="checkout-form">
+            <h2>Checkout</h2>
+            <form id="checkoutForm">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required><br><br>
 
-        <!-- Blog Section -->
-        <div id="blog" class="blog">
-            <h2>From Our Blog</h2>
-            <article>
-                <h3>Top 5 Shopping Tips</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                <a href="#">Read More</a>
-            </article>
-        </div>
+                <label for="address">Shipping Address:</label>
+                <input type="text" id="address" name="address" required><br><br>
 
-        <!-- Contact Form -->
-        <div id="contact" class="contact-form">
-            <h2>Contact Us</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit">Send</button>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="cardNumber">Credit Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required><br><br>
+
+                <label for="expiryDate">Expiry Date (MM/YY):</label>
+                <input type="text" id="expiryDate" name="expiryDate" required><br><br>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required><br><br>
+
+                <button type="submit">Place Order</button>
             </form>
-        </div>
+        </section>
 
-        <!-- Social Media Links -->
-        <div class="social-icons">
-            <h3>Follow Us</h3>
-            <a href="#"><img src="facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="twitter.png" alt="Twitter"></a>
-            <a href="#"><img src="instagram.png" alt="Instagram"></a>
-        </div>
-    </div>
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <p><strong>Q:</strong> What is your return policy?</p>
+            <p><strong>A:</strong> You can return any product within 30 days for a full refund.</p>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <h2>About Us</h2>
+            <p>We are committed to providing the best quality products and services to our customers.</p>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2025 Full-Feature E-Commerce Store</p>
+        <p>&copy; 2025 My Website. All rights reserved.</p>
     </footer>
 
     <script>
-        // Basic JS to filter products
-        document.getElementById('categories').addEventListener('change', function() {
-            alert('Filter by category: ' + this.value);
-        });
+        document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting
 
-        // Wishlist click functionality
-        document.querySelectorAll('.wishlist').forEach(item => {
-            item.addEventListener('click', () => {
-                alert('Added to Wishlist!');
-            });
-        });
+            // Get form values
+            const fullName = document.getElementById("fullName").value;
+            const address = document.getElementById("address").value;
+            const email = document.getElementById("email").value;
+            const cardNumber = document.getElementById("cardNumber").value;
+            const expiryDate = document.getElementById("expiryDate").value;
+            const cvv = document.getElementById("cvv").value;
 
-        // Back in stock notification
-        document.querySelectorAll('.back-in-stock').forEach(item => {
-            item.addEventListener('click', () => {
-                alert('You will be notified when the product is back in stock!');
-            });
+            // Basic validation
+            if (!fullName || !address || !email || !cardNumber || !expiryDate || !cvv) {
+                alert("Please fill out all the fields.");
+                return;
+            }
+
+            // Example validation for card number (16 digits)
+            if (!/^\d{16}$/.test(cardNumber)) {
+                alert("Please enter a valid 16-digit credit card number.");
+                return;
+            }
+
+            // If everything is valid, display a success message
+            alert("Order placed successfully! Thank you for shopping with us.");
         });
     </script>
 </body>

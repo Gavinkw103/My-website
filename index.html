@@ -1,162 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Shopify-like Store</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        header nav a {
-            margin: 0 10px;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .product-container {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .product {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            text-align: center;
-            width: 200px;
-        }
-
-        button {
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background: #555;
-        }
-
-        .cart-container {
-            padding: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    header, footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      background-color: #444;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+    }
+    nav a:hover {
+      background-color: #555;
+      border-radius: 5px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 10px;
+      background: white;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+    }
+    .cart, .checkout {
+      margin-top: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+    }
+    #login-form, #register-form, #checkout-form {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>My Store</h1>
-        <nav>
-            <a href="#" onclick="showHomePage()">Home</a>
-            <a href="#" onclick="showCartPage()">Cart</a>
-        </nav>
-    </header>
+  <header>
+    <h1>E-Commerce Website</h1>
+  </header>
+  <nav>
+    <a href="#" onclick="showSection('products')">Home</a>
+    <a href="#" onclick="showSection('cart')">Cart</a>
+    <a href="#" onclick="showSection('login')">Login</a>
+  </nav>
+  <div id="main" class="container">
+    <!-- Product List -->
+    <div id="products" class="product-list"></div>
 
-    <main id="content">
-        <div class="product-container">
-            <!-- Product 1 -->
-            <div class="product">
-                <img src="https://via.placeholder.com/200" alt="Product 1">
-                <h2>Baseball Wristband with Ball</h2>
-                <p>$9.99</p>
-                <button onclick="addToCart('Baseball Wristband with Ball', 9.99)">Add to Cart</button>
-            </div>
-            <!-- Product 2 -->
-            <div class="product">
-                <img src="https://via.placeholder.com/200" alt="Product 2">
-                <h2>Toy 2</h2>
-                <p>$15.49</p>
-                <button onclick="addToCart('Toy 2', 15.49)">Add to Cart</button>
-            </div>
-        </div>
-    </main>
+    <!-- Cart -->
+    <div id="cart" style="display: none;">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <button onclick="showSection('checkout')">Proceed to Checkout</button>
+    </div>
 
-    <footer>
-        <p>Contact us via Google Voice at: [Your Google Voice Link]</p>
-    </footer>
+    <!-- Login -->
+    <div id="login-form">
+      <h2>Login</h2>
+      <input type="text" id="login-email" placeholder="Email">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
 
-    <script>
-        let cart = [];
+    <!-- Register -->
+    <div id="register-form">
+      <h2>Register</h2>
+      <input type="text" id="register-email" placeholder="Email">
+      <input type="password" id="register-password" placeholder="Password">
+      <button onclick="register()">Register</button>
+    </div>
 
-        // Add to Cart Function
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price });
-            alert(`${productName} added to cart!`);
-            updateCart();
-        }
+    <!-- Checkout -->
+    <div id="checkout-form">
+      <h2>Checkout</h2>
+      <input type="text" placeholder="Full Name">
+      <input type="text" placeholder="Address">
+      <input type="text" placeholder="City">
+      <input type="text" placeholder="State">
+      <input type="text" placeholder="Zip Code">
+      <button onclick="placeOrder()">Place Order</button>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 E-Commerce Website. All rights reserved.</p>
+  </footer>
 
-        // Update Cart in LocalStorage
-        function updateCart() {
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
+  <script>
+    const products = [
+      { id: 1, name: "Toy Car", price: 10, image: "https://via.placeholder.com/200" },
+      { id: 2, name: "Building Blocks", price: 20, image: "https://via.placeholder.com/200" },
+      { id: 3, name: "Doll", price: 15, image: "https://via.placeholder.com/200" },
+    ];
+    let cart = [];
 
-        // Show Home Page
-        function showHomePage() {
-            const content = document.getElementById("content");
-            content.innerHTML = `
-                <div class="product-container">
-                    <div class="product">
-                        <img src="https://via.placeholder.com/200" alt="Product 1">
-                        <h2>Baseball Wristband with Ball</h2>
-                        <p>$9.99</p>
-                        <button onclick="addToCart('Baseball Wristband with Ball', 9.99)">Add to Cart</button>
-                    </div>
-                    <div class="product">
-                        <img src="https://via.placeholder.com/200" alt="Product 2">
-                        <h2>Toy 2</h2>
-                        <p>$15.49</p>
-                        <button onclick="addToCart('Toy 2', 15.49)">Add to Cart</button>
-                    </div>
-                </div>
-            `;
-        }
+    function showSection(section) {
+      document.getElementById("products").style.display = section === "products" ? "block" : "none";
+      document.getElementById("cart").style.display = section === "cart" ? "block" : "none";
+      document.getElementById("login-form").style.display = section === "login" ? "block" : "none";
+      document.getElementById("checkout-form").style.display = section === "checkout" ? "block" : "none";
+    }
 
-        // Show Cart Page
-        function showCartPage() {
-            const content = document.getElementById("content");
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            let total = 0;
+    function loadProducts() {
+      const productList = document.getElementById("products");
+      productList.innerHTML = "";
+      products.forEach(product => {
+        const productDiv = document.createElement("div");
+        productDiv.className = "product";
+        productDiv.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>$${product.price}</p>
+          <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+        productList.appendChild(productDiv);
+      });
+    }
 
-            const cartHTML = cartItems.map(item => {
-                total += item.price;
-                return `<li>${item.name} - $${item.price.toFixed(2)}</li>`;
-            }).join("");
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      cart.push(product);
+      alert("Product added to cart!");
+    }
 
-            content.innerHTML = `
-                <div class="cart-container">
-                    <h2>Your Cart</h2>
-                    <ul>${cartHTML || "<p>Your cart is empty.</p>"}</ul>
-                    <p>Total: $${total.toFixed(2)}</p>
-                    <button onclick="checkout()">Checkout</button>
-                </div>
-            `;
-        }
+    function showCart() {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      cart.forEach(item => {
+        const itemDiv = document.createElement("div");
+        itemDiv.innerHTML = `
+          <p>${item.name} - $${item.price}</p>
+        `;
+        cartItems.appendChild(itemDiv);
+      });
+    }
 
-        // Checkout Function
-        function checkout() {
-            alert("Checkout complete!");
-            cart = [];
-            localStorage.removeItem("cart");
-            showCartPage();
-        }
-    </script>
+    function placeOrder() {
+      alert("Order placed successfully!");
+      cart = [];
+      showSection("products");
+    }
+
+    loadProducts();
+  </script>
 </body>
 </html>

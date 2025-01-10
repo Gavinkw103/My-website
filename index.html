@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>My Toy Store</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,6 +45,10 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
     }
 
     .product img {
@@ -59,65 +63,56 @@
       gap: 20px;
     }
 
-    .customer-reviews, .contact {
-      margin-top: 30px;
-    }
-
-    .rating {
-      display: flex;
-      align-items: center;
-    }
-
-    .rating span {
-      margin-left: 5px;
-    }
-
     footer {
       margin-top: 20px;
+    }
+
+    .contact {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to My Website</h1>
+    <h1>Welcome to My Toy Store</h1>
   </header>
 
   <nav>
     <a href="#products">Products</a>
     <a href="#contact">Contact Us</a>
-    <a href="#reviews">Customer Reviews</a>
   </nav>
 
   <div class="container">
     <section id="products" class="product-list">
+      <!-- Product 1 -->
       <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Product 1">
-        <p>Product 1</p>
-        <p>$0.01</p>
+        <img src="https://via.placeholder.com/200" alt="Toy 1">
+        <p>Baseball Wristband with Ball</p>
+        <p>$9.99</p>
+        <a href="https://www.amazon.com/Sports-Baseball-Wristband-Rebound-Exercise/dp/B09Z6B36N2" target="_blank">Buy Now</a>
       </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200" alt="Product 2">
-        <p>Product 2</p>
-        <p>$0.02</p>
-      </div>
+      
+      <!-- Random 19 Products -->
+      <!-- Replace placeholders with real product info -->
+      ${Array.from({ length: 19 }, (_, i) => `
+        <div class="product">
+          <img src="https://via.placeholder.com/200?text=Toy+${i + 2}" alt="Toy ${i + 2}">
+          <p>Toy ${i + 2}</p>
+          <p>$${(Math.random() * 10 + 1).toFixed(2)}</p>
+        </div>
+      `).join('')}
     </section>
 
     <section id="contact" class="contact">
       <h2>Contact Us</h2>
       <p>Phone: 801-427-4985</p>
-      <p>Email: contact@mywebsite.com</p>
-    </section>
-
-    <section id="reviews" class="customer-reviews">
-      <h2>What Our Customers Say</h2>
-      <p>John D. - "Great website! Easy to use and great products."</p>
-      <p>Emily R. - "Fantastic quality and fast shipping."</p>
-      <p>Mike T. - "Highly recommend this site. Very professional!"</p>
+      <p>Email: contact@mytoystore.com</p>
+      <p>To leave us a message via Google Voice, call or text: <strong>801-427-4985</strong>.</p>
     </section>
   </div>
 
   <footer>
-    <p>© 2025 My Website. All rights reserved.</p>
+    <p>© 2025 My Toy Store. All rights reserved.</p>
   </footer>
 </body>
 </html>

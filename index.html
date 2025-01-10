@@ -1,143 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Toy Store</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212; /* Sleek black background */
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shopify-like Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-    header, footer {
-      background-color: #1e1e1e;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-    }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
 
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background-color: #333;
-      padding: 10px;
-    }
+        header nav a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 16px;
-    }
+        .product-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-    nav a:hover {
-      background-color: #555;
-      border-radius: 5px;
-    }
+        .product {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+        }
 
-    .container {
-      padding: 20px;
-    }
+        button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    .product {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 20px;
-      border: 1px solid #444;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #222;
-    }
+        button:hover {
+            background: #555;
+        }
 
-    .product img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    footer {
-      margin-top: 20px;
-    }
-
-    .contact {
-      margin-top: 30px;
-      background-color: #1e1e1e;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    .contact p {
-      margin: 10px 0;
-    }
-
-    h2 {
-      color: #ffcc00;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: #ffcc00;
-      color: black;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-
-    .btn:hover {
-      background-color: #ffd633;
-    }
-  </style>
+        .cart-container {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Toy Store</h1>
-  </header>
+    <header>
+        <h1>My Store</h1>
+        <nav>
+            <a href="#" onclick="showHomePage()">Home</a>
+            <a href="#" onclick="showCartPage()">Cart</a>
+        </nav>
+    </header>
 
-  <nav>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact Us</a>
-  </nav>
-
-  <div class="container">
-    <section id="products" class="product-list">
-      <!-- Featured Product -->
-      <div class="product">
-        <img src="https://m.media-amazon.com/images/I/71FNi-XHlaL._AC_SL1500_.jpg" alt="Baseball Wristband with Ball">
-        <p>Baseball Wristband with Ball</p>
-        <p>$9.99</p>
-        <p>A fun and interactive way to practice your baseball skills. Includes a wristband and rebound ball!</p>
-      </div>
-
-      <!-- 20 Random Products -->
-      ${Array.from({ length: 20 }, (_, i) => `
-        <div class="product">
-          <img src="https://via.placeholder.com/200?text=Toy+${i + 2}" alt="Toy ${i + 2}">
-          <p>Random Toy ${i + 2}</p>
-          <p>$${(Math.random() * 50 + 5).toFixed(2)}</p>
+    <main id="content">
+        <div class="product-container">
+            <!-- Product 1 -->
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Product 1">
+                <h2>Baseball Wristband with Ball</h2>
+                <p>$9.99</p>
+                <button onclick="addToCart('Baseball Wristband with Ball', 9.99)">Add to Cart</button>
+            </div>
+            <!-- Product 2 -->
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Product 2">
+                <h2>Toy 2</h2>
+                <p>$15.49</p>
+                <button onclick="addToCart('Toy 2', 15.49)">Add to Cart</button>
+            </div>
         </div>
-      `).join('')}
-    </section>
+    </main>
 
-    <section id="contact" class="contact">
-      <h2>Contact Us</h2>
-      <p>We use Google Voice to handle customer messages securely. Leave us a message, and we'll get back to you!</p>
-      <p><strong>Call or text us at: 801-427-4985</strong></p>
-    </section>
-  </div>
+    <footer>
+        <p>Contact us via Google Voice at: [Your Google Voice Link]</p>
+    </footer>
 
-  <footer>
-    <p>© 2025 My Toy Store. All rights reserved.</p>
-  </footer>
+    <script>
+        let cart = [];
+
+        // Add to Cart Function
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price });
+            alert(`${productName} added to cart!`);
+            updateCart();
+        }
+
+        // Update Cart in LocalStorage
+        function updateCart() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        // Show Home Page
+        function showHomePage() {
+            const content = document.getElementById("content");
+            content.innerHTML = `
+                <div class="product-container">
+                    <div class="product">
+                        <img src="https://via.placeholder.com/200" alt="Product 1">
+                        <h2>Baseball Wristband with Ball</h2>
+                        <p>$9.99</p>
+                        <button onclick="addToCart('Baseball Wristband with Ball', 9.99)">Add to Cart</button>
+                    </div>
+                    <div class="product">
+                        <img src="https://via.placeholder.com/200" alt="Product 2">
+                        <h2>Toy 2</h2>
+                        <p>$15.49</p>
+                        <button onclick="addToCart('Toy 2', 15.49)">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show Cart Page
+        function showCartPage() {
+            const content = document.getElementById("content");
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let total = 0;
+
+            const cartHTML = cartItems.map(item => {
+                total += item.price;
+                return `<li>${item.name} - $${item.price.toFixed(2)}</li>`;
+            }).join("");
+
+            content.innerHTML = `
+                <div class="cart-container">
+                    <h2>Your Cart</h2>
+                    <ul>${cartHTML || "<p>Your cart is empty.</p>"}</ul>
+                    <p>Total: $${total.toFixed(2)}</p>
+                    <button onclick="checkout()">Checkout</button>
+                </div>
+            `;
+        }
+
+        // Checkout Function
+        function checkout() {
+            alert("Checkout complete!");
+            cart = [];
+            localStorage.removeItem("cart");
+            showCartPage();
+        }
+    </script>
 </body>
 </html>
